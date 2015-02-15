@@ -10,8 +10,8 @@
     },
     "license": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007",
     "description" : {
-        "en": "Use a JSON API as a DynamicField backend",
-        "de": "Verwende eine JSON-API als Backend für Dynamische Felder"
+        "en": "Authenticate User against OTRS and get some information",
+        "de": "Authentifiziere Benutzer gegen ein OTRS und bekomme einige Informationen"
     },
     "code": [
         { "type": "Install", "version": 0 },
