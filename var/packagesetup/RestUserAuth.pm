@@ -22,7 +22,7 @@ use Kernel::System::VariableCheck qw(:all);
 our @ObjectDependencies = qw(
     Kernel::Config
     Kernel::System::SysConfig
-    Kernel::System::GenericInterface
+    Kernel::System::GenericInterface::Webservice
     Kernel::System::YAML
 );
 
@@ -94,7 +94,7 @@ sub CodeInstall {
     my ( $Self, %Param ) = @_;
 
     # create dynamic fields 
-    $Self->_InstallWebservice()
+    $Self->_InstallWebservice();
 
     return 1;
 }
@@ -153,11 +153,11 @@ sub _InstallWebservice {
         $Kernel::OM->Get('Kernel::Config')->Get('Home'),
         qw/var GenericInterface UserAuth.yml/;
 
-    my $Content = $Kernel::OM->Get('Kernel::System::Main')->ReadFile(
+    my $Content = $Kernel::OM->Get('Kernel::System::Main')->FileRead(
         Location => $Location,
     );
 
-    my $ImportedConfig = $Self->{YAMLObject}->Load( Data => ${$Content} );
+    my $ImportedConfig = $YAMLObject->Load( Data => ${$Content} );
 
     # display any YAML error message as a normal otrs error message
     if ( !IsHashRefWithData($ImportedConfig) ) {
@@ -165,15 +165,16 @@ sub _InstallWebservice {
     }
 
     # check if imported configuration has current framework version otherwise update it
-    if ( $ImportedConfig->{FrameworkVersion} ne $Self->{FrameworkVersion} ) {
-        $ImportedConfig = $Self->_UpdateConfiguration( Configuration => $ImportedConfig );
-    }
+    #if ( $ImportedConfig->{FrameworkVersion} ne $Self->{FrameworkVersion} ) {
+    #    $ImportedConfig = $Self->_UpdateConfiguration( Configuration => $ImportedConfig );
+    #}
 
     # remove framework information since is not needed anymore
     delete $ImportedConfig->{FrameworkVersion};
 
     # get webservice name
-    my $WebserviceName = basename $Location;
+    my $WebserviceName   = basename $Location;
+    my $WebserviceObject = $Kernel::OM->Get('Kernel::System::GenericInterface::Webservice');
 
     # remove file extension
     $WebserviceName =~ s{\.[^.]+$}{}g;
@@ -184,7 +185,7 @@ sub _InstallWebservice {
     return if $WebserviceList{ $WebserviceName };
 
     # otherwise save configuration and return to overview screen
-    my $Success = $Self->{WebserviceObject}->WebserviceAdd(
+    my $Success = $WebserviceObject->WebserviceAdd(
         Name    => $WebserviceName,
         Config  => $ImportedConfig,
         ValidID => 1,
