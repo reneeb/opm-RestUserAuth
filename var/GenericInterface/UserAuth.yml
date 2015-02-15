@@ -1,0 +1,29 @@
+---
+Debugger:
+  DebugThreshold: debug
+  TestMode: '0'
+Description: ''
+FrameworkVersion: 4.0.3
+Provider:
+  Operation:
+    UserAuth:
+      Description: User-Auth für Asepo
+      MappingInbound:
+        Type: Simple
+      MappingOutbound:
+        Type: Simple
+      Type: Auth::UserAuth
+  Transport:
+    Config:
+      KeepAlive: ''
+      MaxLength: '10000'
+      RouteOperationMapping:
+        UserAuth:
+          RequestMethod:
+          - GET
+          Route: /UserAuth
+    Type: HTTP::REST
+RemoteSystem: ''
+Requester:
+  Transport:
+    Type: ''

@@ -1,0 +1,20 @@
+{
+    "name": "RestUserAuth",
+    "version": "4.0.1",
+    "framework": [
+        "4.0.x"
+    ],
+    "vendor": {
+        "name":  "Perl-Services.de",
+        "url": "http://www.perl-services.de"
+    },
+    "license": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007",
+    "description" : {
+        "en": "Use a JSON API as a DynamicField backend",
+        "de": "Verwende eine JSON-API als Backend für Dynamische Felder"
+    },
+    "code": [
+        { "type": "Install", "version": 0 },
+        { "type": "Upgrade", "version": 0 }
+    ]
+}

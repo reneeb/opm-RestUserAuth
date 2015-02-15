@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<otrs_package version="1.0">
+    <!-- GENERATED WITH OTRS::OPM::Maker::Command::sopm (1.28) -->
+    <Name>RestUserAuth</Name>
+    <Version>4.0.1</Version>
+    <Framework>4.0.x</Framework>
+    <Vendor>Perl-Services.de</Vendor>
+    <URL>http://www.perl-services.de</URL>
+    <Description Lang="de">Verwende eine JSON-API als Backend für Dynamische Felder</Description>
+    <Description Lang="en">Use a JSON API as a DynamicField backend</Description>
+    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <Filelist>
+        <File Permission="644" Location="Custom/Kernel/GenericInterface/Operation/Auth/UserAuth.pm" />
+        <File Permission="644" Location="Kernel/Config/Files/RestUserAuth.xml" />
+        <File Permission="644" Location="doc/RestUserAuth.json" />
+        <File Permission="644" Location="var/GenericInterface/UserAuth.yml" />
+        <File Permission="644" Location="var/packagesetup/RestUserAuth.pm" />
+    </Filelist>
+    <CodeInstall Type="post"><![CDATA[
+        $Kernel::OM->Get('var::packagesetup::' . $Param{Structure}->{Name}->{Content} )->CodeInstall();
+    ]]></CodeInstall>
+    <CodeUpgrade Type="post"><![CDATA[
+        $Kernel::OM->Get('var::packagesetup::' . $Param{Structure}->{Name}->{Content} )->CodeUpgrade();
+    ]]></CodeUpgrade>
+</otrs_package>
