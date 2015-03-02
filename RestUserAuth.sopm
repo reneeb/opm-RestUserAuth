@@ -13,6 +13,7 @@
         <File Permission="644" Location="Custom/Kernel/GenericInterface/Operation/Auth/UserAuth.pm" />
         <File Permission="644" Location="Kernel/Config/Files/RestUserAuth.xml" />
         <File Permission="644" Location="doc/RestUserAuth.json" />
+        <File Permission="644" Location="doc/en/RestUserAuth.pod" />
         <File Permission="644" Location="var/GenericInterface/UserAuth.yml" />
         <File Permission="644" Location="var/packagesetup/RestUserAuth.pm" />
     </Filelist>
