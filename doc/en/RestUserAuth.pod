@@ -1,0 +1,42 @@
+=head1 NAME
+
+RestUserAuth
+
+=head1 DESCRIPTION
+
+This is an endpoint for the OTRS GenericInterface to authenticate an user.
+It does not generate a session id like the SessionCreate endpoint, but returns
+more information about the user when the authentication was successful:
+
+It return a JSON hash that looks like
+
+ {
+    "UserName" : 'My Fullname',
+    "Groups"   : ['my', 'ro', 'and', 'rw', 'groups']
+ }
+
+This is how a auth request can be done with Mojolicious
+
+    my $otrs = 'http://localhost/otrs/nph-genericinterface.pl/Webservice/UserAuth/UserAuth';
+  
+    my $tx = $ua->get(
+        $otrs => { Accept => 'application/json' },
+        form => {
+            UserLogin => $user,
+            Password  => $password,
+        },
+    );
+
+=head1 REPOSITORY AND BUGTRACKER
+
+The code repository and a bugtracker can be found at L<http://github.com/reneeb/otrs-RestUserAuth>.
+
+=head1 SUPPORT
+
+If you need further support or any OTRS services, please drop me a line at
+L<opar@perl-services.de>.
+
+=head1 AUTHOR
+
+(c) 2015 Renee Baecker, C<info@perl-services.de>
+
