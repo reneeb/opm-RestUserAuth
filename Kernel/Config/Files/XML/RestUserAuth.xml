@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<otrs_config version="1.0" init="Application">
-    <ConfigItem Name="GenericInterface::Operation::Module###Auth::UserAuth" Required="0" Valid="1">
+<otrs_config version="2.0" init="Application">
+    <Setting Name="GenericInterface::Operation::Module###Auth::UserAuth" Required="0" Valid="1">
         <Description Translatable="1">GenericInterface module registration for the operation layer.</Description>
-        <Group>RestUserAuth</Group>
-        <SubGroup>GenericInterface::Operation::ModuleRegistration</SubGroup>
-        <Setting>
+        <Navigation>GenericInterface::Operation::ModuleRegistration</Navigation>
+        <Value>
             <Hash>
                 <Item Key="Name">UserAuth</Item>
                 <Item Key="Controller">Auth</Item>
                 <Item Key="ConfigDialog">AdminGenericInterfaceOperationDefault</Item>
             </Hash>
-        </Setting>
-    </ConfigItem>
+        </Value>
+    </Setting>
 </otrs_config>
