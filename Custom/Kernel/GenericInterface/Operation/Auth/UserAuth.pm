@@ -199,7 +199,7 @@ sub Auth {
     return +{
         UserName => $UserData{UserFullname},
         Groups   => [ sort keys %Groups ],
-        Roles    => [ sort keys %Roles ],
+        Roles    => [ sort values %Roles ],
     };
 }
 
