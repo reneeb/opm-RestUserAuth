@@ -134,7 +134,7 @@ sub Run {
 performs user authentication and return a new SessionID value
 
     my $Result = $CommonObject->CreateSessionID(
-        Data {
+        Data => {
             UserLogin => 'Agent1',
             Password  => 'some password',   # plain text password
         }
@@ -176,9 +176,11 @@ sub Auth {
 
     my %Groups;
 
+    my $GroupObject = $Kernel::OM->Get('Kernel::System::Group');
+
     # get groups rw/ro
     for my $Type (qw(rw ro)) {
-        my %GroupData = $Kernel::OM->Get('Kernel::System::Group')->GroupMemberList(
+        my %GroupData = $GroupObject->GroupMemberList(
             Result => 'HASH',
             Type   => $Type,
             UserID => $UserData{UserID},
@@ -189,9 +191,15 @@ sub Auth {
         }
     }
 
+    my %Roles = $GroupObject->GroupUserRoleMemberList(
+        UserID => $UserData{UserID},
+        Result => 'HASH',
+    );
+
     return +{
         UserName => $UserData{UserFullname},
         Groups   => [ sort keys %Groups ],
+        Roles    => [ sort keys %Roles ],
     };
 }
 
