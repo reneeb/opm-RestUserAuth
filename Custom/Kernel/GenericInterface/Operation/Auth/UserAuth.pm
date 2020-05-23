@@ -191,15 +191,14 @@ sub Auth {
         }
     }
 
-    my %Roles = $GroupObject->GroupUserRoleMemberList(
+    my %Roles = $GroupObject->PermissionUserRoleGet(
         UserID => $UserData{UserID},
-        Result => 'HASH',
     );
 
     return +{
         UserName => $UserData{UserFullname},
         Groups   => [ sort keys %Groups ],
-        Roles    => [ sort keys %Roles ],
+        Roles    => [ sort values %Roles ],
     };
 }
 
