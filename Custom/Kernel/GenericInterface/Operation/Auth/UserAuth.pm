@@ -1,6 +1,6 @@
 # --
 # Kernel/GenericInterface/Operation/Auth/UserAuth.pm - GenericInterface UserAuth operation backend
-# Copyright (C) 2015 Perl-Services.de, http://perl-services.de
+# Copyright (C) 2015 - 2022 Perl-Services.de, https://www.perl-services.de
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
